@@ -9,29 +9,24 @@
 		const ic = incorrect.split('');
 
 		couldBe = words
-			.filter(word => c.some(l => word.includes(l)));
-		console.log(couldBe);
-
-		couldBe = couldBe
+			.filter(word => c.every(l => word.includes(l)))
 			.filter(word => !ic.some(l => word.includes(l)));
-
-		console.log(couldBe);
 	}
 
 </script>
 
 <main>
+	<h1>Guesser&nbsp;Man</h1>
 	<label for="correctLetters">
 		Correct letters
-		<input type='text' bind:value={correct} />
+		<input type='text' bind:value={correct} on:keyup={lookFor}/>
 	</label>
 
 	<label for="inCorrectLetters">
 		InCorrect letters
-		<input type='text'  bind:value={incorrect}/>
+		<input type='text'  bind:value={incorrect} on:keyup={lookFor}/>
 	</label>
 
-	<button on:click={lookFor}>Search</button>
 	<br>
 
 	{#if couldBe.length}
@@ -52,7 +47,6 @@
 	main {
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
