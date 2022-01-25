@@ -17,8 +17,9 @@
 	export let couldBe = [];
 
 	function lookFor(){
-		const c = (correct_0 + correct_1 + correct_2 + correct_3 + correct_4).split('');
+		const c = (correct_0 + correct_1 + correct_2 + correct_3 + correct_4 + incorrect_0 + incorrect_1 + incorrect_2 + incorrect_3 + incorrect_4).split('');
 		const ic = incorrect.split('');
+		console.log(c);
 
 		couldBe = words
 			.filter(word => c.every(l => word.includes(l)) && !ic.some(l => word.includes(l)));
@@ -29,11 +30,11 @@
 		if (correct_3 !== '') couldBe = couldBe.filter(word => word[3] === correct_3);
 		if (correct_4 !== '') couldBe = couldBe.filter(word => word[4] === correct_4);
 
-		if (incorrect_0 !== '') couldBe = couldBe.filter(word => incorrect_0.includes(word[0]));
-		if (incorrect_1 !== '') couldBe = couldBe.filter(word => incorrect_1.includes(word[1]));
-		if (incorrect_2 !== '') couldBe = couldBe.filter(word => incorrect_2.includes(word[2]));
-		if (incorrect_3 !== '') couldBe = couldBe.filter(word => incorrect_3.includes(word[3]));
-		if (incorrect_4 !== '') couldBe = couldBe.filter(word => incorrect_4.includes(word[4]));
+		if (incorrect_0 !== '') couldBe = couldBe.filter(word => !incorrect_0.includes(word[0]));
+		if (incorrect_1 !== '') couldBe = couldBe.filter(word => !incorrect_1.includes(word[1]));
+		if (incorrect_2 !== '') couldBe = couldBe.filter(word => !incorrect_2.includes(word[2]));
+		if (incorrect_3 !== '') couldBe = couldBe.filter(word => !incorrect_3.includes(word[3]));
+		if (incorrect_4 !== '') couldBe = couldBe.filter(word => !incorrect_4.includes(word[4]));
 
 	}
 
