@@ -16,7 +16,10 @@
 	let incorrect_4: string = '';
 
 	export let couldBe: string[] = [];
+	export let wordScores: {word: string, score: number}[] = [];
 	export let hasSearched: boolean = false;
+	export let mostCommonLetter: string = '';
+	export let alphabetic: boolean = false;
 
 	function lookFor(){
 		hasSearched = true;
@@ -46,11 +49,33 @@
 				couldBe = [];
 				hasSearched = false;
 			}
+
+		const letterMap: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		couldBe.forEach(w => w.split('').forEach(l=>letterMap[l.charCodeAt(0) - 97]++));
+		const indexOfMostCommon = letterMap.indexOf(Math.max(...letterMap));
+		mostCommonLetter = String.fromCharCode(indexOfMostCommon+97)
+
+		if (!alphabetic) {
+			wordScores = couldBe.map(w => {
+				let score = 0;
+				for (const l of w) {
+					if (w.match(new RegExp(l, 'g')).length === 1)
+						score += letterMap[l.charCodeAt(0) - 97];
+					else
+						score -= letterMap[l.charCodeAt(0) - 97];
+				}
+				return {word: w, score: score};
+			}).sort((a,b) => a.score < b.score ? 1 : -1);
+
+			console.log(wordScores);
+		}
 	}
 </script>
 
 <main>
 	<h1>Word Finder</h1>
+
+	<button on:click="{() => alphabetic = !alphabetic}">Sort { alphabetic ? 'Ranked' : 'Alphabetically'}</button>
 
 	<div>
 		<label for="correct">Correctly Placed Letters</label>
@@ -79,17 +104,25 @@
 		{#if hasSearched && !couldBe.length}
 			Could not find a match in word list.
 		{:else if couldBe.length}
-			{couldBe.length} options of {words.length} remain.
+			{couldBe.length} options of {words.length} remain. Most common letter is {mostCommonLetter}
 		{:else}
 			There are {words.length} words in the list.
 		{/if}
 	</div>
 	<table>
-		{#each couldBe as word}
-			<tr>
-				<td>{ word}</td>
-			</tr>
-		{/each}
+		{#if alphabetic}
+			{#each couldBe as word}
+				<tr>
+					<td>{ word}</td>
+				</tr>
+			{/each}
+		{:else}
+			{#each wordScores as word}
+				<tr>
+					<td>{word.word}</td>
+				</tr>
+			{/each}
+		{/if}
 	</table>
 </main>
 
