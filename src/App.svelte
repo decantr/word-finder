@@ -15,11 +15,14 @@
 	let incorrect_3: string = '';
 	let incorrect_4: string = '';
 
+	let letterMap: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	words.forEach(w => w.split('').forEach(l=>letterMap[l.charCodeAt(0) - 97]++));
+
 	export let couldBe: string[] = [];
 	export let wordScores: {word: string, score: number}[] = [];
 	export let hasSearched: boolean = false;
-	export let mostCommonLetter: string = '';
 	export let alphabetic: boolean = false;
+	export const bestWord: string = findBestWord(words)[0].word;
 
 	function lookFor(){
 		hasSearched = true;
@@ -43,20 +46,22 @@
 					return true;
 				}
 				return false;
-			});
+		});
 
-			if (couldBe.length === words.length) {
-				couldBe = [];
-				hasSearched = false;
-			}
-
-		const letterMap: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-		couldBe.forEach(w => w.split('').forEach(l=>letterMap[l.charCodeAt(0) - 97]++));
-		const indexOfMostCommon = letterMap.indexOf(Math.max(...letterMap));
-		mostCommonLetter = String.fromCharCode(indexOfMostCommon+97)
+		if (couldBe.length === words.length) {
+			couldBe = [];
+			hasSearched = false;
+		}
 
 		if (!alphabetic) {
-			wordScores = couldBe.map(w => {
+			letterMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+			couldBe.forEach(w => w.split('').forEach(l=>letterMap[l.charCodeAt(0) - 97]++));
+			wordScores = findBestWord(couldBe);
+		}
+	}
+
+	function findBestWord(wordlist: string[]){
+			return wordlist.map(w => {
 				let score = 0;
 				for (const l of w) {
 					if (w.match(new RegExp(l, 'g')).length === 1)
@@ -67,8 +72,6 @@
 				return {word: w, score: score};
 			}).sort((a,b) => a.score < b.score ? 1 : -1);
 
-			console.log(wordScores);
-		}
 	}
 </script>
 
@@ -104,9 +107,9 @@
 		{#if hasSearched && !couldBe.length}
 			Could not find a match in word list.
 		{:else if couldBe.length}
-			{couldBe.length} options of {words.length} remain. Most common letter is {mostCommonLetter}
+			{couldBe.length} options of {words.length} remain.
 		{:else}
-			There are {words.length} words in the list.
+			There are {words.length} words in the list.<br>Best guess based on scores is {bestWord}
 		{/if}
 	</div>
 	<table>
