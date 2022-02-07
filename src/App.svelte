@@ -73,6 +73,10 @@
 			}).sort((a,b) => a.score < b.score ? 1 : -1);
 
 	}
+
+  function lowercase(node: HTMLInputElement): void {
+    node.addEventListener('input', () => node.value = node.value.toLowerCase(), { capture: true })
+  }
 </script>
 
 <main>
@@ -82,25 +86,25 @@
 
 	<div>
 		<label for="correct">Correctly Placed Letters</label>
-		<input id="correct" type='text' maxlength="1" class="not" bind:value={correct_0} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" bind:value={correct_1} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" bind:value={correct_2} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" bind:value={correct_3} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" bind:value={correct_4} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="not" use:lowercase bind:value={correct_0} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="not" use:lowercase bind:value={correct_1} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="not" use:lowercase bind:value={correct_2} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="not" use:lowercase bind:value={correct_3} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="not" use:lowercase bind:value={correct_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
 		<label for="incorrect">Correct Letters not In Position</label>
-		<input id="incorrect" type='text' maxlength="4" class="almost" bind:value={incorrect_0} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" bind:value={incorrect_1} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" bind:value={incorrect_2} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" bind:value={incorrect_3} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" bind:value={incorrect_4} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" use:lowercase bind:value={incorrect_0} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" use:lowercase bind:value={incorrect_1} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" use:lowercase bind:value={incorrect_2} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" use:lowercase bind:value={incorrect_3} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" use:lowercase bind:value={incorrect_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
 		<label for="inCorrectLetters">Incorrect letters</label>
-		<input type='text'  bind:value={incorrect} on:keyup={lookFor}/>
+		<input type='text' use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
 	</div>
 
 	<div>
