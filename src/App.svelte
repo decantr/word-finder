@@ -26,23 +26,23 @@
 
 	function lookFor(){
 		hasSearched = true;
-		const c: string[] = (correct_0 + correct_1 + correct_2 + correct_3 + correct_4 + incorrect_0 + incorrect_1 + incorrect_2 + incorrect_3 + incorrect_4).toLowerCase().split('');
-		const ic: string[] = incorrect.toLowerCase().split('');
+		const c: string[] = (correct_0 + correct_1 + correct_2 + correct_3 + correct_4 + incorrect_0 + incorrect_1 + incorrect_2 + incorrect_3 + incorrect_4).split('');
+		const ic: string[] = incorrect.split('');
 
 		couldBe = words
 			.filter(word => {
 				if ( c.every(l => word.includes(l)) && !ic.some(l => word.includes(l)) ) {
-					if (correct_0.toLowerCase() !== '' && word[0] !== correct_0.toLowerCase())  return false;
-					if (correct_1.toLowerCase() !== '' && word[1] !== correct_1.toLowerCase())  return false;
-					if (correct_2.toLowerCase() !== '' && word[2] !== correct_2.toLowerCase())  return false;
-					if (correct_3.toLowerCase() !== '' && word[3] !== correct_3.toLowerCase())  return false;
-					if (correct_4.toLowerCase() !== '' && word[4] !== correct_4.toLowerCase())  return false;
+					if (correct_0 !== '' && word[0] !== correct_0) return false;
+					if (correct_1 !== '' && word[1] !== correct_1) return false;
+					if (correct_2 !== '' && word[2] !== correct_2) return false;
+					if (correct_3 !== '' && word[3] !== correct_3) return false;
+					if (correct_4 !== '' && word[4] !== correct_4) return false;
 
-					if (incorrect_0.toLowerCase() !== '' && incorrect_0.toLowerCase().includes(word[0])) return false;
-					if (incorrect_1.toLowerCase() !== '' && incorrect_1.toLowerCase().includes(word[1])) return false;
-					if (incorrect_2.toLowerCase() !== '' && incorrect_2.toLowerCase().includes(word[2])) return false;
-					if (incorrect_3.toLowerCase() !== '' && incorrect_3.toLowerCase().includes(word[3])) return false;
-					if (incorrect_4.toLowerCase() !== '' && incorrect_4.toLowerCase().includes(word[4])) return false;
+					if (incorrect_0 !== '' && incorrect_0.includes(word[0])) return false;
+					if (incorrect_1 !== '' && incorrect_1.includes(word[1])) return false;
+					if (incorrect_2 !== '' && incorrect_2.includes(word[2])) return false;
+					if (incorrect_3 !== '' && incorrect_3.includes(word[3])) return false;
+					if (incorrect_4 !== '' && incorrect_4.includes(word[4])) return false;
 					return true;
 				}
 				return false;
