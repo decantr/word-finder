@@ -113,11 +113,11 @@
 
 	<div>
 		<label for="correct">Correctly Placed Letters</label>
-		<input id="correct" type='text' maxlength="1" class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_0} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_1} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_2} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_3} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_4} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_0} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_1} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_2} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_3} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
@@ -131,7 +131,7 @@
 
 	<div>
 		<label for="inCorrectLetters">Incorrect letters</label>
-		<input type='text' autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
+		<input type='text' class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
 	</div>
 
 	<div>
@@ -140,7 +140,7 @@
 		{:else if couldBe.length}
 			{couldBe.length} options of {words.length} remain.
 		{:else}
-			There are {words.length} words in the list.<br>Best guess based on scores is {bestWord}
+			There are {words.length} words in the list.<br>Best guess based on the scoring system is <span class="highlight">{bestWord}</span>
 		{/if}
 	</div>
 	<table>
@@ -167,12 +167,6 @@
 </main>
 
 <style>
-	.not {
-		width: 2em;
-	}
-	.almost {
-		width: 4em;
-	}
 	label {
 		padding: 0.5em;
 	}
@@ -194,6 +188,23 @@
 			max-width: none;
 		}
 	}
+
+	.highlight {
+		border-bottom: 1px solid #96CEB4;
+	}
+	
+	.is {
+		width: 2em;
+		background-color: #96CEB4;
+	}
+	.almost {
+		width: 4em;
+		background-color: #FFEEAD;
+	}
+	.not {
+		background-color: #9D9D9D;
+	}
+	
   .used {
     opacity: 0.5;
   }
