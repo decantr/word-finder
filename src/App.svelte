@@ -2,6 +2,8 @@
   import {WordList} from './words';
 
   const words: string[] = WordList.words;
+
+  const currentGameNo: number = Math.floor((new Date().getTime() - new Date('2021-06-19').getTime()) / (1000 * 3600 * 24));
 	let incorrect: string = '';
 
 	let correct_0: string = '';
@@ -78,6 +80,10 @@
   function lowercase(node: HTMLInputElement): void {
     node.addEventListener('input', () => node.value = node.value.toLowerCase(), { capture: true })
   }
+
+  function isWordUsed(word: string): boolean {
+    return words.findIndex(w => w === word) < currentGameNo;
+  }
 </script>
 
 <main>
@@ -124,15 +130,15 @@
 	</div>
 	<table>
 		{#if alphabetic}
-			{#each couldBe as word}
+			{#each couldBe.sort() as word}
 				<tr>
-					<td>{ word}</td>
+					<td class="{isWordUsed(word) ? 'used': ''}">{word}</td>
 				</tr>
 			{/each}
 		{:else}
 			{#each wordScores as word}
 				<tr>
-					<td>{word.word}</td>
+					<td class="{isWordUsed(word.word) ? 'used': ''}">{word.word}</td>
 				</tr>
 			{/each}
 		{/if}
@@ -167,6 +173,10 @@
 			max-width: none;
 		}
 	}
+  .used {
+    opacity: 0.5;
+  }
+
   .sort-button {
     width: 2rem;
     height: 2rem;
