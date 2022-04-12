@@ -7,19 +7,21 @@
 
   let confirmedClicks: number = 0;
 
-	let incorrect: string = '';
+	let absent: string = '';
 
-	let correct_0: string = '';
-	let correct_1: string = '';
-	let correct_2: string = '';
-	let correct_3: string = '';
-	let correct_4: string = '';
+	let is_0: string = '';
+	let is_1: string = '';
+	let is_2: string = '';
+	let is_3: string = '';
+	let is_4: string = '';
 
-	let incorrect_0: string = '';
-	let incorrect_1: string = '';
-	let incorrect_2: string = '';
-	let incorrect_3: string = '';
-	let incorrect_4: string = '';
+	let not_0: string = '';
+	let not_1: string = '';
+	let not_2: string = '';
+	let not_3: string = '';
+	let not_4: string = '';
+
+	let nots: string[] = [];
 
 	let letterMap: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	words.forEach(w => w.split('').forEach(l=>letterMap[l.charCodeAt(0) - 97]++));
@@ -32,23 +34,24 @@
 
 	function lookFor(){
 		hasSearched = true;
-		const c: string[] = (correct_0 + correct_1 + correct_2 + correct_3 + correct_4 + incorrect_0 + incorrect_1 + incorrect_2 + incorrect_3 + incorrect_4).split('');
-		const ic: string[] = incorrect.split('');
+		const c: string[] = (is_0 + is_1 + is_2 + is_3 + is_4 + not_0 + not_1 + not_2 + not_3 + not_4).split('');
+		const ic: string[] = absent.split('');
+		nots = (not_0 + not_1 + not_2 + not_3 + not_4);
 
 		couldBe = words
 			.filter(word => {
 				if ( c.every(l => word.includes(l)) && !ic.some(l => word.includes(l)) ) {
-					if (correct_0 !== '' && word[0] !== correct_0) return false;
-					if (correct_1 !== '' && word[1] !== correct_1) return false;
-					if (correct_2 !== '' && word[2] !== correct_2) return false;
-					if (correct_3 !== '' && word[3] !== correct_3) return false;
-					if (correct_4 !== '' && word[4] !== correct_4) return false;
+					if (is_0 !== '' && word[0] !== is_0) return false;
+					if (is_1 !== '' && word[1] !== is_1) return false;
+					if (is_2 !== '' && word[2] !== is_2) return false;
+					if (is_3 !== '' && word[3] !== is_3) return false;
+					if (is_4 !== '' && word[4] !== is_4) return false;
 
-					if (incorrect_0 !== '' && incorrect_0.includes(word[0])) return false;
-					if (incorrect_1 !== '' && incorrect_1.includes(word[1])) return false;
-					if (incorrect_2 !== '' && incorrect_2.includes(word[2])) return false;
-					if (incorrect_3 !== '' && incorrect_3.includes(word[3])) return false;
-					if (incorrect_4 !== '' && incorrect_4.includes(word[4])) return false;
+					if (not_0 !== '' && not_0.includes(word[0])) return false;
+					if (not_1 !== '' && not_1.includes(word[1])) return false;
+					if (not_2 !== '' && not_2.includes(word[2])) return false;
+					if (not_3 !== '' && not_3.includes(word[3])) return false;
+					if (not_4 !== '' && not_4.includes(word[4])) return false;
 					return true;
 				}
 				return false;
@@ -126,25 +129,25 @@
 
 	<div>
 		<label for="correct">Correctly Placed Letters</label>
-		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_0} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_1} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_2} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_3} on:keyup={lookFor}/>
-		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_4} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_0} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_1} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_2} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_3} on:keyup={lookFor}/>
+		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
 		<label for="incorrect">Correct Letters not In Position</label>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_0} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_1} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_2} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_3} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_4} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_1} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_0} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_2} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_3} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
 		<label for="inCorrectLetters">Incorrect letters</label>
-		<input type='text' class="not" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
+		<input class="not" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={absent} on:keyup={lookFor}/>
 	</div>
 
 	<table>
