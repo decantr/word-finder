@@ -74,8 +74,11 @@
 						score += letterMap[l.charCodeAt(0) - 97];
 					else
 						score -= letterMap[l.charCodeAt(0) - 97];
+
+					if (['a','e','i','o','u'].includes(l))
+						score += wordlist.length;
 				}
-				return {word: w, score: score};
+				return {word: w, score};
 			}).sort((a,b) => a.score < b.score ? 1 : -1);
 
 	}
