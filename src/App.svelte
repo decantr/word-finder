@@ -122,16 +122,16 @@
 
 	<div>
 		<label for="incorrect">Correct Letters not In Position</label>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect_0} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect_1} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect_2} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect_3} on:keyup={lookFor}/>
-		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect_4} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_0} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_1} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_2} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_3} on:keyup={lookFor}/>
+		<input id="incorrect" type='text' maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" pellcheck="false" use:lowercase bind:value={incorrect_4} on:keyup={lookFor}/>
 	</div>
 
 	<div>
 		<label for="inCorrectLetters">Incorrect letters</label>
-		<input type='text' class="not" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
+		<input type='text' class="not" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
 	</div>
 
 	<div>
