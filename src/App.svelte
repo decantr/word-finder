@@ -90,9 +90,16 @@
 			return;
 		}
 
+		confirmedClicks = 0;
 		if (confirm('Are you sure?')) {
-			confirmedClicks = 0;
-			alert(words[currentGameNo]);
+			const word = words[currentGameNo];
+			is_0 = word[0];
+			is_1 = word[1];
+			is_2 = word[2];
+			is_3 = word[3];
+			is_4 = word[4];
+			nots = absent = not_0 = not_1 = not_2 = not_3 = not_4 = '';
+			wordScores = [{word, score: 1}];
 		}
 	}
 </script>
