@@ -114,6 +114,16 @@
     </span>
   </h1>
 
+	<div style="margin-bottom: 1em;">
+		{#if hasSearched && !couldBe.length}
+			Could not find a match in word list.
+		{:else if couldBe.length}
+			{couldBe.length} options of {words.length} remain.
+		{:else}
+			There are {words.length} words in the list.<br>Best guess based on the scoring system is <span class="highlight">{bestWord}</span>
+		{/if}
+	</div>
+
 	<div>
 		<label for="correct">Correctly Placed Letters</label>
 		<input id="correct" type='text' maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={correct_0} on:keyup={lookFor}/>
@@ -137,15 +147,6 @@
 		<input type='text' class="not" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={incorrect} on:keyup={lookFor}/>
 	</div>
 
-	<div>
-		{#if hasSearched && !couldBe.length}
-			Could not find a match in word list.
-		{:else if couldBe.length}
-			{couldBe.length} options of {words.length} remain.
-		{:else}
-			There are {words.length} words in the list.<br>Best guess based on the scoring system is <span class="highlight">{bestWord}</span>
-		{/if}
-	</div>
 	<table>
 		{#if alphabetic}
 			{#each couldBe.sort() as word}
