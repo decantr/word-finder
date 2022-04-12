@@ -216,6 +216,7 @@
 	.results>div {
 		display: flex;
 		justify-content: center;
+		height: 44px;
 	}
 
 	.results input {
@@ -223,8 +224,8 @@
 	}
 
 	.results svg {
-		width: 1.5em;
-		margin: -.5em -2em 0 .5em;
+		width: 18px;
+		margin: -6px -20px 0 2px;
 	}
 
 	.is {
