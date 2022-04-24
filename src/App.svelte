@@ -121,8 +121,8 @@
 
 	<div>
 		<label for="">Incorrectly Placed Letters</label>
-		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_1} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_0} on:keyup={lookFor}/>
+		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_1} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_2} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_3} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_4} on:keyup={lookFor}/>
