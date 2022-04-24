@@ -111,7 +111,7 @@
 	</p>
 
 	<div>
-		<label>Correctly Placed Letters</label>
+		<label for="">Correctly Placed Letters</label>
 		<input maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_0} on:keyup={lookFor}/>
 		<input maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_1} on:keyup={lookFor}/>
 		<input maxlength="1" class="is" autocomplete="off" autocapitalize="off" spellcheck="false" use:lowercase bind:value={is_2} on:keyup={lookFor}/>
@@ -120,7 +120,7 @@
 	</div>
 
 	<div>
-		<label>Incorrectly Placed Letters</label>
+		<label for="">Incorrectly Placed Letters</label>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_1} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_0} on:keyup={lookFor}/>
 		<input maxlength="4" class="almost" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={not_2} on:keyup={lookFor}/>
@@ -129,7 +129,7 @@
 	</div>
 
 	<div>
-		<label>Incorrect letters</label>
+		<label for="">Incorrect letters</label>
 		<input class="not" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" use:lowercase bind:value={absent} on:keyup={lookFor}/>
 	</div>
 
@@ -157,11 +157,11 @@
 				{/if}
 			</div>
 			{:else if showAll || i === 10}
-				<label on:click={() => showAll = !showAll}>Click to show remaining {couldBe.length} options</label>
+				<label for="" on:click={() => showAll = !showAll}>Click to show remaining {couldBe.length} options</label>
 			{/if}
 		{/each}
 		{#if showAll}
-			<label on:click={() => showAll = !showAll}>Click to only show top 10</label>
+			<label for="" on:click={() => showAll = !showAll}>Click to only show top 10</label>
 		{/if}
 	</div>
 </main>
